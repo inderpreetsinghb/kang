@@ -274,9 +274,12 @@ PRODUCT_PACKAGES += \
 endif
 endif
 
-# DU Utils Library
-# PRODUCT_PACKAGES += \
-#     org.dirtyunicorns.utils
+# Dex preopt
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUIGoogle
+
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/kang/overlay
+DEVICE_PACKAGE_OVERLAYS += vendor/kang/overlay/common
 
 PRODUCT_VERSION_MAJOR = 17
 PRODUCT_VERSION_MINOR = 1
