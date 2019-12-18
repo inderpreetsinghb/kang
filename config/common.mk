@@ -119,6 +119,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/kang/configs/permissions/lineage-power-whitelist.xml:system/etc/sysconfig/lineage-power-whitelist.xml
 
+# Pre-granted permissions
+PRODUCT_COPY_FILES += \
+    vendor/lineage/config/permissions/lineage-default-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/lineage-default-permissions.xml
+
 # Include AOSP audio files
 include vendor/kang/configs/aosp_audio.mk
 
