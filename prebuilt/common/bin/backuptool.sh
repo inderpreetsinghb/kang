@@ -5,7 +5,7 @@
 
 export C=/tmp/backupdir
 export S=$2
-export V=pie
+export V=ten
 
 export ADDOND_VERSION=1
 

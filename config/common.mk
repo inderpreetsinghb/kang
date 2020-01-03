@@ -274,8 +274,9 @@ endif
 # PRODUCT_PACKAGES += \
 #     org.dirtyunicorns.utils
 
-# PRODUCT_BOOT_JARS += \
-#     org.dirtyunicorns.utils
+PRODUCT_VERSION_MAJOR = 17
+PRODUCT_VERSION_MINOR = 1
+PRODUCT_VERSION_MAINTENANCE := 0
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.root_access=3
