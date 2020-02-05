@@ -56,7 +56,6 @@ PRODUCT_COPY_FILES += \
     vendor/kang/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/kang/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
     vendor/kang/prebuilt/common/bin/50-kang.sh:system/addon.d/50-kang.sh \
-    vendor/kang/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
