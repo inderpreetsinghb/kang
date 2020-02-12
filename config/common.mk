@@ -276,7 +276,8 @@ endif
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI
+    SystemUI \
+    TrebuchetQuickStep
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/kang/overlay
 DEVICE_PACKAGE_OVERLAYS += vendor/kang/overlay/common
