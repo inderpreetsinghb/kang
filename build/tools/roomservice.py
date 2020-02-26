@@ -92,10 +92,37 @@ def indent(elem, level=0):
         if level and (not elem.tail or not elem.tail.strip()):
             elem.tail = i
 
-def write_out_local_manifest(manif):
-    indent(manif, 0)
-    raw_xml = ElementTree.tostring(manif).decode()
-    raw_xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + raw_xml
+def get_manifest_path():
+    '''Find the current manifest path
+    In old versions of repo this is at .repo/manifest.xml
+    In new versions, .repo/manifest.xml includes an include
+    to some arbitrary file in .repo/manifests'''
+
+    m = ElementTree.parse(".repo/manifest.xml")
+    try:
+        m.findall('default')[0]
+        return '.repo/manifest.xml'
+    except IndexError:
+        return ".repo/manifests/{}".format(m.find("include").get("name"))
+
+def get_default_revision():
+    m = ElementTree.parse(get_manifest_path())
+    d = m.findall('default')[0]
+    r = d.get('revision')
+    return r.replace('refs/heads/', '').replace('refs/tags/', '')
+
+def get_from_manifest(devicename):
+    try:
+        lm = ElementTree.parse(".repo/local_manifests/roomservice.xml")
+        lm = lm.getroot()
+    except:
+        lm = ElementTree.Element("manifest")
+
+    for localpath in lm.findall("project"):
+        if re.search("android_device_.*_%s$" % device, localpath.get("name")):
+            return localpath.get("path")
+
+    return None
 
     f = open('.repo/local_manifests/roomservice.xml', 'w')
     f.write(raw_xml)
@@ -106,6 +133,14 @@ def is_path_in_manifest(checkpath, name, remote, branch):
         if (defpath.get("path") == checkpath):
             # print("Path %s is already tracked in default manifest from %s" % (checkpath, defpath.get("name")))
             return True
+
+    # Search in main manifest, too
+    try:
+        lm = ElementTree.parse(get_manifest_path())
+        lm = lm.getroot()
+    except:
+        lm = ElementTree.Element("manifest")
+
     for localpath in lm.findall("project"):
         if (localpath.get("path") == checkpath):
             if ((localpath.get("name") != name) or (localpath.get("remote") != remote) or (localpath.get("revision") != branch)):
