@@ -149,8 +149,9 @@ PRODUCT_PACKAGES += \
 
 # Optional KANG packages
 PRODUCT_PACKAGES += \
-    LiveWallpapersPicker \
-    PhotoTable \
+    Email \
+    ExactCalculator \
+    Exchange2 \
     Terminal
 
 # OmniRom packages
