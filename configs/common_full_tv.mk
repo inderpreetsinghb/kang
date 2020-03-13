@@ -2,7 +2,7 @@
 TARGET_EXCLUDES_AUDIOFX := true
 
 # Inherit common AOKP stuff
-$(call inherit-product, vendor/aokp/config/common_full.mk)
+$(call inherit-product, vendor/kang/config/common_full.mk)
 
 
 # Inherit Lineage atv device tree
@@ -12,4 +12,4 @@ PRODUCT_PACKAGES += \
     AppDrawer \
     LineageCustomizer
 
-DEVICE_PACKAGE_OVERLAYS += vendor/aokp/overlay/tv
+DEVICE_PACKAGE_OVERLAYS += vendor/kang/overlay/tv

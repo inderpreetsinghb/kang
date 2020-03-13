@@ -103,7 +103,7 @@
         <permission name="android.permission.RECOVERY"/>
     </privapp-permissions>
     
-    <privapp-permissions package="com.aokp.romcontrol">
+    <privapp-permissions package="com.kang.KangedFeatures">
         <permission name="android.permission.CHANGE_CONFIGURATION"/>
         <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
         <permission name="android.permission.CONTROL_INCALL_EXPERIENCE"/>

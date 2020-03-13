@@ -25,7 +25,7 @@ ifeq ($(TARGET_SCREEN_HEIGHT),)
 endif
 
 define build-bootanimation
-    $(shell) vendor/aokp/bootanimation/generate-bootanimation.sh \
+    $(shell) vendor/kang/bootanimation/generate-bootanimation.sh \
     $(PRODUCT_OUT) \
     $(TARGET_SCREEN_WIDTH) \
     $(TARGET_SCREEN_HEIGHT) \

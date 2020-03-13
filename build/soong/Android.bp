@@ -1,6 +1,6 @@
 bootstrap_go_package {
-    name: "soong-aokp",
-    pkgPath: "aokp/soong/android",
+    name: "soong-kang",
+    pkgPath: "kang/soong/android",
     srcs: [
         "android/config.go",
         "android/variable.go",
@@ -8,8 +8,8 @@ bootstrap_go_package {
 }
 
 bootstrap_go_package {
-    name: "soong-aokp-generator",
-    pkgPath: "aokp/soong/generator",
+    name: "soong-kang-generator",
+    pkgPath: "kang/soong/generator",
     deps: [
         "blueprint",
         "blueprint-pathtools",
@@ -24,7 +24,7 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-aokp_generator {
+kang_generator {
     name: "generated_kernel_includes",
 
     // The headers make command

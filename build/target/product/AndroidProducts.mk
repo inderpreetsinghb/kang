@@ -15,7 +15,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aokp_arm.mk \
-    $(LOCAL_DIR)/aokp_arm64.mk \
-    $(LOCAL_DIR)/aokp_x86.mk \
-    $(LOCAL_DIR)/aokp_x86_64.mk
+    $(LOCAL_DIR)/kang_arm.mk \
+    $(LOCAL_DIR)/kang_arm64.mk \
+    $(LOCAL_DIR)/kang_x86.mk \
+    $(LOCAL_DIR)/kang_x86_64.mk

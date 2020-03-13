@@ -1,13 +1,13 @@
 # Permissions for lineage sdk services
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/org.lineageos.audio.xml:system/etc/permissions/org.lineageos.audio.xml \
-    vendor/aokp/configs/permissions/org.lineageos.livedisplay.xml:system/etc/permissions/org.lineageos.livedisplay.xml \
-    vendor/aokp/configs/permissions/org.lineageos.performance.xml:system/etc/permissions/org.lineageos.performance.xml \
-    vendor/aokp/configs/permissions/org.lineageos.profiles.xml:system/etc/permissions/org.lineageos.profiles.xml \
-    vendor/aokp/configs/permissions/org.lineageos.settings.xml:system/etc/permissions/org.lineageos.settings.xml \
-    vendor/aokp/configs/permissions/org.lineageos.style.xml:system/etc/permissions/org.lineageos.style.xml \
-    vendor/aokp/configs/permissions/org.lineageos.trust.xml:system/etc/permissions/org.lineageos.trust.xml \
-    vendor/aokp/configs/permissions/org.lineageos.weather.xml:system/etc/permissions/org.lineageos.weather.xml
+    vendor/kang/configs/permissions/org.lineageos.audio.xml:system/etc/permissions/org.lineageos.audio.xml \
+    vendor/kang/configs/permissions/org.lineageos.livedisplay.xml:system/etc/permissions/org.lineageos.livedisplay.xml \
+    vendor/kang/configs/permissions/org.lineageos.performance.xml:system/etc/permissions/org.lineageos.performance.xml \
+    vendor/kang/configs/permissions/org.lineageos.profiles.xml:system/etc/permissions/org.lineageos.profiles.xml \
+    vendor/kang/configs/permissions/org.lineageos.settings.xml:system/etc/permissions/org.lineageos.settings.xml \
+    vendor/kang/configs/permissions/org.lineageos.style.xml:system/etc/permissions/org.lineageos.style.xml \
+    vendor/kang/configs/permissions/org.lineageos.trust.xml:system/etc/permissions/org.lineageos.trust.xml \
+    vendor/kang/configs/permissions/org.lineageos.weather.xml:system/etc/permissions/org.lineageos.weather.xml
 
 # Lineage Platform Library
 PRODUCT_PACKAGES += \

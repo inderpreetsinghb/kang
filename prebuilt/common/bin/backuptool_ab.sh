@@ -50,7 +50,7 @@ if [ ! -r /system/build.prop ]; then
     return 0
 fi
 
-grep -q "^ro.aokp.version=$V.*" /system/build.prop && return 1
+grep -q "^ro.kang.version=$V.*" /system/build.prop && return 1
 
 echo "Not backing up files from incompatible version: $V"
 return 0

@@ -12,8 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, build/target/product/aosp_arm64.mk)
+$(call inherit-product, build/target/product/aosp_x86.mk)
 
-include vendor/aokp/build/target/product/aokp_generic_target.mk
+include vendor/kang/build/target/product/kang_generic_target.mk
 
-PRODUCT_NAME := aokp_arm64
+TARGET_USES_64_BIT_BINDER := true
+
+PRODUCT_NAME := kang_x86

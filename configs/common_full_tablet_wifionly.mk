@@ -1,9 +1,9 @@
-# Inherit common AOKP stuff
-$(call inherit-product, vendor/aokp/configs/common_full.mk)
+# Inherit common KANG stuff
+$(call inherit-product, vendor/kang/configs/common_full.mk)
 
 # Required packages
 PRODUCT_PACKAGES += \
     LatinIME
 
 # Include Lineage LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/aokp/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/kang/overlay/dictionaries

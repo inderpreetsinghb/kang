@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Copyright (C) 2012-16, The CyanogenMod Project
-# Copyright (C) 2017, AOKP
+# Copyright (C) 2017, KANG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -129,11 +129,11 @@ def add_to_local_manifest(path, name, remote, branch=None):
             branch = "lineage-16.0"
         if not (name.find("LineageOS/") == 0):
             name = "LineageOS/" + name
-    if (remote == "aokp"):
+    if (remote == "kang"):
         if (branch == None):
             branch = "pie"
-        if not (name.find("AOKP/") == 0):
-            name = "AOKP/" + name
+        if not (name.find("KANG/") == 0):
+            name = "KANG/" + name
 
     if is_path_in_manifest(path, name, remote, branch):
         # Error messages are present in the called function, so just exit
@@ -150,7 +150,7 @@ def add_to_local_manifest(path, name, remote, branch=None):
 
 
 def get_from_github(device):
-        print("Going to fetch %s from AOKP github" % device)
+        print("Going to fetch %s from KANG github" % device)
         try:
             authtuple = netrc.netrc().authenticators("api.github.com")
 
@@ -162,7 +162,7 @@ def get_from_github(device):
         except:
             githubauth = None
 
-        githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:AOKP+in:name+fork:true" % device)
+        githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:KANG+in:name+fork:true" % device)
         if githubauth:
             githubreq.add_header("Authorization","Basic %s" % githubauth)
 
@@ -179,14 +179,14 @@ def get_from_github(device):
             if (res['name'].startswith("device_") and res['name'].endswith("_%s" % device)):
                 print("Found %s" % res['name'])
                 devicepath = res['name'].replace("_","/")
-                if add_to_local_manifest(devicepath, res['full_name'], "aokp"):
+                if add_to_local_manifest(devicepath, res['full_name'], "kang"):
                     reposync(res['full_name'])
                 break
 
 def checkdeps(repo_path):
     losdeps = glob.glob(repo_path + "/lineage.dependencies")
-    aokpdeps = glob.glob(repo_path + "/aokp.dependencies")
-    if ((len(losdeps) + len(aokpdeps)) < 1):
+    kangdeps = glob.glob(repo_path + "/kang.dependencies")
+    if ((len(losdeps) + len(kangdeps)) < 1):
         ran_checkdeps_on.append("NO_DEPS:\t\t" + repo_path)
         return
     else:
@@ -208,12 +208,12 @@ def checkdeps(repo_path):
                     reposync(dep['target_path'])
                 checkdeps(dep['target_path'])
 
-        if (len(aokpdeps) > 0):
-            ran_checkdeps_on.append("HAS_AOKP_DEPS:\t" + repo_path)
-            aokpdeps = aokpdeps[0]
-            aokpdeps = open(aokpdeps, 'r')
-            aokpdeps = json.loads(aokpdeps.read())
-            for dep in aokpdeps:
+        if (len(kangdeps) > 0):
+            ran_checkdeps_on.append("HAS_KANG_DEPS:\t" + repo_path)
+            kangdeps = kangdeps[0]
+            kangdeps = open(kangdeps, 'r')
+            kangdeps = json.loads(kangdeps.read())
+            for dep in kangdeps:
                 try:
                     branch = dep['branch']
                 except:
@@ -221,7 +221,7 @@ def checkdeps(repo_path):
                 try:
                     remote = dep['remote']
                 except:
-                    remote = "aokp"
+                    remote = "kang"
                 if add_to_local_manifest(dep['target_path'], dep['repository'], remote, branch):
                     reposync(dep['target_path'])
                 checkdeps(dep['target_path'])

@@ -16,5 +16,5 @@
 
 <!-- This feature shows that this is AOKP based -->
 <permissions>
-    <feature name="com.aokp.android" />
+    <feature name="com.kang.android" />
 </permissions>

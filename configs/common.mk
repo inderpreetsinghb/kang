@@ -1,7 +1,7 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
-PRODUCT_BRAND ?= aokp
+PRODUCT_BRAND ?= kang
 
 SUPERUSER_EMBEDDED := true
 
@@ -18,7 +18,7 @@ PRODUCT_PACKAGES += \
     bootanimation.zip
 
 # Common dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/aokp/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/kang/overlay/dictionaries
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -58,44 +58,44 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/aokp/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/aokp/prebuilt/common/bin/50-aokp.sh:system/addon.d/50-aokp.sh \
-    vendor/aokp/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/kang/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/kang/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/kang/prebuilt/common/bin/50-kang.sh:system/addon.d/50-kang.sh \
+    vendor/kang/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
-    vendor/aokp/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
-    vendor/aokp/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
+    vendor/kang/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
+    vendor/kang/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
+    vendor/kang/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
 endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/kang/configs/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # Lineage-specific broadcast actions whitelist
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/lineage-sysconfig.xml:system/etc/sysconfig/lineage-sysconfig.xml
+    vendor/kang/configs/permissions/lineage-sysconfig.xml:system/etc/sysconfig/lineage-sysconfig.xml
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/aokp/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/kang/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/kang/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/kang/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
 # Copy all Lineage-specific init rc files
-$(foreach f,$(wildcard vendor/aokp/prebuilt/common/etc/init/*.rc),\
+$(foreach f,$(wildcard vendor/kang/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/kang/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -105,12 +105,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# This is AOKP!
+# This is kang!
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/org.lineageos.android.xml:system/etc/permissions/org.lineageos.android.xml \
-    vendor/aokp/configs/permissions/privapp-permissions-lineage.xml:system/etc/permissions/privapp-permissions-lineage.xml \
-    vendor/aokp/configs/permissions/privapp-permissions-cm-legacy.xml:system/etc/permissions/privapp-permissions-cm-legcay.xml \
-    vendor/aokp/configs/permissions/com.aokp.android.xml:system/etc/permissions/com.aokp.android.xml
+    vendor/kang/configs/permissions/org.lineageos.android.xml:system/etc/permissions/org.lineageos.android.xml \
+    vendor/kang/configs/permissions/privapp-permissions-lineage.xml:system/etc/permissions/privapp-permissions-lineage.xml \
+    vendor/kang/configs/permissions/privapp-permissions-cm-legacy.xml:system/etc/permissions/privapp-permissions-cm-legcay.xml \
+    vendor/kang/configs/permissions/com.kang.android.xml:system/etc/permissions/com.kang.android.xml
 
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -118,29 +118,29 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Hidden API whitelist
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/lineage-hiddenapi-package-whitelist.xml:system/etc/permissions/lineage-hiddenapi-package-whitelist.xml
+    vendor/kang/configs/permissions/lineage-hiddenapi-package-whitelist.xml:system/etc/permissions/lineage-hiddenapi-package-whitelist.xml
 
 # Power whitelist
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/lineage-power-whitelist.xml:system/etc/sysconfig/lineage-power-whitelist.xml
+    vendor/kang/configs/permissions/lineage-power-whitelist.xml:system/etc/sysconfig/lineage-power-whitelist.xml
 
 # Include AOSP audio files
-include vendor/aokp/configs/aosp_audio.mk
+include vendor/kang/configs/aosp_audio.mk
 
-# Include AOKP audio files
-include vendor/aokp/configs/audio.mk
+# Include kang audio files
+include vendor/kang/configs/audio.mk
 
 ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
 # Lineage SDK
-include vendor/aokp/configs/lineage_sdk_common.mk
+include vendor/kang/configs/lineage_sdk_common.mk
 endif
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
-include vendor/aokp/configs/twrp.mk
+include vendor/kang/configs/twrp.mk
 endif
 
-# Required AOKP packages
+# Required kang packages
 PRODUCT_PACKAGES += \
     CellBroadcastReceiver \
     Development \
@@ -149,7 +149,7 @@ PRODUCT_PACKAGES += \
     Stk \
     SwagPapers
 
-# Optional AOKP packages
+# Optional kang packages
 PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     PhotoTable \
@@ -290,8 +290,8 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 #    ro.substratum.verified=true
 
 # Common overlay
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/aokp/overlay 
-DEVICE_PACKAGE_OVERLAYS += vendor/aokp/overlay/common
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/kang/overlay 
+DEVICE_PACKAGE_OVERLAYS += vendor/kang/overlay/common
 
 PRODUCT_VERSION_MAJOR = 16
 PRODUCT_VERSION_MINOR = 0
@@ -300,26 +300,26 @@ PRODUCT_VERSION_MAINTENANCE = 0
 # Version information used on all builds
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_VERSION_TAGS=release-keys USER=android-build BUILD_UTC_DATE=$(shell date +"%s")
 
-AOKP_BUILD_DATE := $(shell LC_ALL=C date +%Y-%m-%d_%H%M)
-AOKP_BRANCH=pie
+KANG_BUILD_DATE := $(shell LC_ALL=C date +%Y-%m-%d_%H%M)
+KANG_BRANCH=ten
 
-ifndef AOKP_BUILDTYPE
-    AOKP_BUILDTYPE := unofficial
+ifndef kang_BUILDTYPE
+    KANG_BUILDTYPE := UNRELEASED
 endif
 
-AOKP_VERSION=$(TARGET_PRODUCT)_$(AOKP_BRANCH)_$(AOKP_BUILDTYPE)_$(AOKP_BUILD_DATE)
-AOKP_DISPLAY_VERSION := $(AOKP_VERSION)
+KANG_VERSION=$(TARGET_PRODUCT)_$(KANG_BRANCH)_$(KANG_BUILDTYPE)_$(KANG_BUILD_DATE)
+KANG_DISPLAY_VERSION := $(KANG_VERSION)
 
 PRODUCT_GENERIC_PROPERTIES += \
-    ro.aokp.version=$(AOKP_VERSION) \
-    ro.aokp.branch=$(AOKP_BRANCH) \
-    ro.aokp.device=$(AOKP_DEVICE) \
-    ro.aokp.releasetype=$(AOKP_BUILDTYPE) \
-    ro.modversion=$(AOKP_VERSION) \
-    ro.aokp.display.version=$(AOKP_DISPLAY_VERSION)
+    ro.kang.version=$(KANG_VERSION) \
+    ro.kang.branch=$(KANG_BRANCH) \
+    ro.kang.device=$(KANG_DEVICE) \
+    ro.kang.releasetype=$(KANG_BUILDTYPE) \
+    ro.modversion=$(KANG_VERSION) \
+    ro.kang.display.version=$(KANG_DISPLAY_VERSION)
 
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    vendor/aokp/build/target/product/security/aokp-releasekey
+    vendor/kang/build/target/product/security/kang-releasekey
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/aokp/configs/partner_gms.mk
+-include vendor/kang/configs/partner_gms.mk

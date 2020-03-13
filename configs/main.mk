@@ -1,2 +1,2 @@
 # Include AOKP versions
-include vendor/aokp/configs/main_version.mk
+include vendor/kang/configs/main_version.mk

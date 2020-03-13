@@ -1,2 +1,2 @@
 # Include LineageOS versions
-include $(TOPDIR)vendor/aokp/build/core/main_version.mk
+include $(TOPDIR)vendor/kang/build/core/main_version.mk

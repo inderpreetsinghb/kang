@@ -3,6 +3,7 @@
 # Copyright (C) 2016 The CyanogenMod Project
 # Copyright (C) 2017 The LineageOS Project
 # Copyright (C) 2016 The AOKP Project
+# Copyright (C) 2020 The KANG Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,7 +49,7 @@ trap cleanup 0
 #
 # $1: device name
 # $2: vendor name
-# $3: AOKP root directory
+# $3: KANG root directory
 # $4: is common device - optional, default to false
 # $5: cleanup - optional, default to true
 # $6: custom vendor makefile name - optional, default to false
@@ -69,15 +70,15 @@ function setup_vendor() {
         exit 1
     fi
 
-    export AOKP_ROOT="$3"
-    if [ ! -d "$AOKP_ROOT" ]; then
-        echo "\$AOKP_ROOT must be set and valid before including this script!"
+    export KANG_ROOT="$3"
+    if [ ! -d "$KANG_ROOT" ]; then
+        echo "\$KANG_ROOT must be set and valid before including this script!"
         exit 1
     fi
 
     export OUTDIR=vendor/"$VENDOR"/"$DEVICE"
-    if [ ! -d "$AOKP_ROOT/$OUTDIR" ]; then
-        mkdir -p "$AOKP_ROOT/$OUTDIR"
+    if [ ! -d "$KANG_ROOT/$OUTDIR" ]; then
+        mkdir -p "$KANG_ROOT/$OUTDIR"
     fi
 
     VNDNAME="$6"
@@ -85,9 +86,9 @@ function setup_vendor() {
         VNDNAME="$DEVICE"
     fi
 
-    export PRODUCTMK="$AOKP_ROOT"/"$OUTDIR"/"$VNDNAME"-vendor.mk
-    export ANDROIDMK="$AOKP_ROOT"/"$OUTDIR"/Android.mk
-    export BOARDMK="$AOKP_ROOT"/"$OUTDIR"/BoardConfigVendor.mk
+    export PRODUCTMK="$KANG_ROOT"/"$OUTDIR"/"$VNDNAME"-vendor.mk
+    export ANDROIDMK="$KANG_ROOT"/"$OUTDIR"/Android.mk
+    export BOARDMK="$KANG_ROOT"/"$OUTDIR"/BoardConfigVendor.mk
 
     if [ "$4" == "true" ] || [ "$4" == "1" ]; then
         COMMON=1
@@ -612,16 +613,16 @@ function write_header() {
             printf "# Copyright (C) 2016 The CyanogenMod Project\n" > $1
         fi
         if [ $YEAR -eq 2017 ]; then
-            printf "# Copyright (C) 2017 The AOKP Project\n" >> $1
+            printf "# Copyright (C) 2017 The KANG Project\n" >> $1
         elif [ $INITIAL_COPYRIGHT_YEAR -eq $YEAR ]; then
-            printf "# Copyright (C) $YEAR The AOKP Project\n" >> $1
+            printf "# Copyright (C) $YEAR The KANG Project\n" >> $1
         elif [ $INITIAL_COPYRIGHT_YEAR -le 2017 ]; then
-            printf "# Copyright (C) 2017-$YEAR The AOKP Project\n" >> $1
+            printf "# Copyright (C) 2017-$YEAR The KANG Project\n" >> $1
         else
-            printf "# Copyright (C) $INITIAL_COPYRIGHT_YEAR-$YEAR The AOKP Project\n" >> $1
+            printf "# Copyright (C) $INITIAL_COPYRIGHT_YEAR-$YEAR The KANG Project\n" >> $1
         fi
     else
-        printf "# Copyright (C) $YEAR The AOKP Project\n" > $1
+        printf "# Copyright (C) $YEAR The KANG Project\n" > $1
     fi
 
     cat << EOF >> $1
@@ -852,7 +853,7 @@ function get_file() {
 # Convert apk|jar .odex in the corresposing classes.dex
 #
 function oat2dex() {
-    local AOKP_TARGET="$1"
+    local KANG_TARGET="$1"
     local OEM_TARGET="$2"
     local SRC="$3"
     local TARGET=
@@ -860,16 +861,16 @@ function oat2dex() {
     local HOST="$(uname)"
 
     if [ -z "$BAKSMALIJAR" ] || [ -z "$SMALIJAR" ]; then
-        export BAKSMALIJAR="$AOKP_ROOT"/vendor/aokp/build/tools/smali/baksmali.jar
-        export SMALIJAR="$AOKP_ROOT"/vendor/aokp/build/tools/smali/smali.jar
+        export BAKSMALIJAR="$KANG_ROOT"/vendor/kang/build/tools/smali/baksmali.jar
+        export SMALIJAR="$KANG_ROOT"/vendor/kang/build/tools/smali/smali.jar
     fi
 
     if [ -z "$VDEXEXTRACTOR" ]; then
-        export VDEXEXTRACTOR="$AOKP_ROOT"/vendor/aokp/build/tools/"$HOST"/vdexExtractor
+        export VDEXEXTRACTOR="$KANG_ROOT"/vendor/kang/build/tools/"$HOST"/vdexExtractor
     fi
 
     if [ -z "$CDEXCONVERTER" ]; then
-        export CDEXCONVERTER="$AOKP_ROOT"/vendor/aokp/build/tools/"$HOST"/compact_dex_converter
+        export CDEXCONVERTER="$KANG_ROOT"/vendor/kang/build/tools/"$HOST"/compact_dex_converter
     fi
 
     # Extract existing boot.oats to the temp folder
@@ -889,11 +890,11 @@ function oat2dex() {
         FULLY_DEODEXED=1 && return 0 # system is fully deodexed, return
     fi
 
-    if [ ! -f "$AOKP_TARGET" ]; then
+    if [ ! -f "$KANG_TARGET" ]; then
         return;
     fi
 
-    if grep "classes.dex" "$AOKP_TARGET" >/dev/null; then
+    if grep "classes.dex" "$KANG_TARGET" >/dev/null; then
         return 0 # target apk|jar is already odexed, return
     fi
 
@@ -921,7 +922,7 @@ function oat2dex() {
                 java -jar "$BAKSMALIJAR" deodex -o "$TMPDIR/dexout" -b "$BOOTOAT" -d "$TMPDIR" "$TMPDIR/$(basename "$OAT")"
                 java -jar "$SMALIJAR" assemble "$TMPDIR/dexout" -o "$TMPDIR/classes.dex"
             fi
-        elif [[ "$AOKP_TARGET" =~ .jar$ ]]; then
+        elif [[ "$KANG_TARGET" =~ .jar$ ]]; then
             JAROAT="$TMPDIR/system/framework/$ARCH/boot-$(basename ${OEM_TARGET%.*}).oat"
             JARVDEX="/system/framework/boot-$(basename ${OEM_TARGET%.*}).vdex"
             if [ ! -f "$JAROAT" ]; then
@@ -1116,7 +1117,7 @@ function extract() {
     local FIXUP_HASHLIST=( ${PRODUCT_COPY_FILES_FIXUP_HASHES[@]} ${PRODUCT_PACKAGES_FIXUP_HASHES[@]} )
     local PRODUCT_COPY_FILES_COUNT=${#PRODUCT_COPY_FILES_LIST[@]}
     local COUNT=${#FILELIST[@]}
-    local OUTPUT_ROOT="$AOKP_ROOT"/"$OUTDIR"/proprietary
+    local OUTPUT_ROOT="$KANG_ROOT"/"$OUTDIR"/proprietary
     local OUTPUT_TMP="$TMPDIR"/"$OUTDIR"/proprietary
 
     if [ "$SRC" = "adb" ]; then
@@ -1144,7 +1145,7 @@ function extract() {
             # If OTA is block based, extract it.
             elif [ -a "$DUMPDIR"/system.new.dat ]; then
                 echo "Converting system.new.dat to system.img"
-                python "$AOKP_ROOT"/vendor/aokp/build/tools/sdat2img.py "$DUMPDIR"/system.transfer.list "$DUMPDIR"/system.new.dat "$DUMPDIR"/system.img 2>&1
+                python "$KANG_ROOT"/vendor/kang/build/tools/sdat2img.py "$DUMPDIR"/system.transfer.list "$DUMPDIR"/system.new.dat "$DUMPDIR"/system.img 2>&1
                 rm -rf "$DUMPDIR"/system.new.dat "$DUMPDIR"/system
                 mkdir "$DUMPDIR"/system "$DUMPDIR"/tmp
                 echo "Requesting sudo access to mount the system.img"
@@ -1233,7 +1234,7 @@ function extract() {
             printf '    + keeping pinned file with hash %s\n' "${HASH}"
         else
             FOUND=false
-            # Try AOKP target first.
+            # Try KANG target first.
             # Also try to search for files stripped of
             # the "/system" prefix, if we're actually extracting
             # from a system image.
@@ -1320,7 +1321,7 @@ function extract_firmware() {
     local FILELIST=( ${PRODUCT_COPY_FILES_LIST[@]} )
     local COUNT=${#FILELIST[@]}
     local SRC="$2"
-    local OUTPUT_DIR="$AOKP_ROOT"/"$OUTDIR"/radio
+    local OUTPUT_DIR="$KANG_ROOT"/"$OUTDIR"/radio
 
     if [ "$VENDOR_RADIO_STATE" -eq "0" ]; then
         echo "Cleaning firmware output directory ($OUTPUT_DIR).."

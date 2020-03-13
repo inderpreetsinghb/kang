@@ -19,7 +19,7 @@ LOCAL_PATH := $(call my-dir)
 #
 include $(CLEAR_VARS)
 LOCAL_MODULE := LatinImeDictionaryPack
-LOCAL_MODULE_OWNER := aokp
+LOCAL_MODULE_OWNER := kang
 LOCAL_SRC_FILES := common/app/$(LOCAL_MODULE).apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
@@ -29,7 +29,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := mGerrit
-LOCAL_MODULE_OWNER := aokp
+LOCAL_MODULE_OWNER := kang
 LOCAL_SRC_FILES := common/app/$(LOCAL_MODULE).apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
@@ -39,7 +39,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := Microbes
-LOCAL_MODULE_OWNER := aokp
+LOCAL_MODULE_OWNER := kang
 LOCAL_SRC_FILES := common/app/$(LOCAL_MODULE).apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
@@ -49,7 +49,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := VerizonSSO
-LOCAL_MODULE_OWNER := aokp
+LOCAL_MODULE_OWNER := kang
 LOCAL_SRC_FILES := vzw/app/$(LOCAL_MODULE).apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
@@ -83,10 +83,10 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := apns-conf.xml
 LOCAL_MODULE_CLASS := ETC
 
-DEFAULT_APNS_FILE := vendor/aokp/prebuilt/common/etc/apns-conf.xml
+DEFAULT_APNS_FILE := vendor/kang/prebuilt/common/etc/apns-conf.xml
 
 ifdef CUSTOM_APNS_FILE
-CUSTOM_APNS_SCRIPT := vendor/aokp/tools/custom_apns.py
+CUSTOM_APNS_SCRIPT := vendor/kang/tools/custom_apns.py
 FINAL_APNS_FILE := $(local-generated-sources-dir)/apns-conf.xml
 
 $(FINAL_APNS_FILE): PRIVATE_SCRIPT := $(CUSTOM_APNS_SCRIPT)

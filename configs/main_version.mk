@@ -1,13 +1,13 @@
-# AOKP System Version
+# KANG System Version
 ADDITIONAL_BUILD_PROPERTIES += \
-    ro.aokp.version=$(AOKP_VERSION) \
-    ro.aokp.releasetype=$(AOKP_BUILDTYPE) \
-    ro.aokp.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.modversion=$(AOKP_VERSION) \
+    ro.kang.version=$(KANG_VERSION) \
+    ro.kang.releasetype=$(KANG_BUILDTYPE) \
+    ro.kang.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.modversion=$(KANG_VERSION) \
 
-# AOKP Platform Display Version
+# KANG Platform Display Version
 ADDITIONAL_BUILD_PROPERTIES += \
-    ro.aokp.display.version=$(AOKP_DISPLAY_VERSION)
+    ro.kang.display.version=$(KANG_DISPLAY_VERSION)
 
 # LineageOS Platform SDK Version
 ADDITIONAL_BUILD_PROPERTIES += \

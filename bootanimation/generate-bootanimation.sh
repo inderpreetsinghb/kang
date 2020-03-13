@@ -24,14 +24,14 @@ for part_cnt in 0
 do
     mkdir -p "$OUT/bootanimation/part$part_cnt"
 done
-tar xfp "vendor/aokp/bootanimation/bootanimation.tar" -C "$OUT/bootanimation/"
+tar xfp "vendor/kang/bootanimation/bootanimation.tar" -C "$OUT/bootanimation/"
 mogrify -resize $RESOLUTION -colors 250 "$OUT/bootanimation/"*"/"*".png"
 
 # Create desc.txt
 echo "$IMAGESCALEWIDTH $IMAGESCALEHEIGHT" 30 > "$OUT/bootanimation/desc.txt"
-cat "vendor/aokp/bootanimation/desc.txt" >> "$OUT/bootanimation/desc.txt"
+cat "vendor/kang/bootanimation/desc.txt" >> "$OUT/bootanimation/desc.txt"
 
-# Create bootanimation.zip
+# Compile bootanimation
 cd "$OUT/bootanimation"
 
 zip -qr0 "$OUT/bootanimation.zip" .

@@ -155,7 +155,7 @@ def fetch_query(remote_url, query):
 
 if __name__ == '__main__':
     # Default to AOKP Gerrit
-    default_gerrit = 'http://gerrit.aokp.co'
+    default_gerrit = 'http://gerrit.kang.co'
 
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=textwrap.dedent('''\
         repopick.py is a utility to simplify the process of cherry picking

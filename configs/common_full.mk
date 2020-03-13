@@ -1,5 +1,5 @@
-# Inherit common AOKP stuff
-$(call inherit-product, vendor/aokp/configs/common.mk)
+# Inherit common KANG stuff
+$(call inherit-product, vendor/kang/configs/common.mk)
 
 PRODUCT_SIZE := full
 

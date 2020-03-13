@@ -450,7 +450,7 @@ projects = repo_manifest_read(manifest_file)
 if not paths:
     for name in projects:
         project = projects[name]
-        if project['remote'] != 'aokp':
+        if project['remote'] != 'kang':
             continue
         if not project['upstream-name']:
             continue

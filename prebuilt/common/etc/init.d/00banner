@@ -5,15 +5,7 @@
 L="log -p i -t AOKP"
 
 $L "******************************************"
-$L "*    ______  _____   __  __   _____      *"
-$L "*   /\\  _  \\/\\  __`\\/\\ \\/\\ \\ /\\  _ `\\    *"
-$L "*   \\ \\ \\L\\ \\ \\ \\/\\ \\ \\ \\/'/'\\ \\ \\L\\ \\   *"
-$L "*    \\ \\  __ \\ \\ \\ \\ \\ \\ , <  \\ \\ ,__/   *"
-$L "*     \\ \\ \\/\\ \\ \\ \\_\\ \\ \\ \\\\\\`\\ \\ \\ \\/    *"
-$L "*      \\ \\_\\ \\_\\ \\_____\\ \\_\\ \\_\\\\\\ \\_\\    *"
-$L "*       \\/_/\\/_/\\/_____/\\/_/\\/_/ \\/_/    *"
-$L "*                                        *"
-$L "*                         http://aokp.co *"
+$L "*    Project Kang By IPSBHANGU 	     *"
 $L "******************************************"
-$L "A wise man never plays leapfrog with a unicorn"
-$L "`getprop ro.build.version.release` / AOKP-`getprop ro.aokp.version`";
+$L "An Project For Feature Lovers"
+$L "`getprop ro.build.version.release` / KANG-`getprop ro.kang.version`";
